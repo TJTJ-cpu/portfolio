@@ -1,7 +1,18 @@
 # Portfolio Website
 
-Personal single-page portfolio website. Desktop-first, responsive, dark theme.  
+Personal single-page portfolio website. Desktop-first, responsive, dark theme.
 Inspired by [hemonvong.space](https://hemonvong.space).
+
+## Collaboration Style
+
+Claude teaches, TJ does. For each phase:
+1. Explain the goal and why it matters
+2. Walk through one step at a time — explain what we're about to do and why before doing it
+3. TJ types the code/commands himself
+4. After each step, check understanding before moving on
+5. Do NOT move to the next phase until TJ confirms he understands
+
+Never do multiple steps at once. Never skip explanations to save time. If TJ asks "why", answer fully before continuing. The goal is learning, not shipping fast.
 
 ## Tech Stack
 
@@ -12,7 +23,313 @@ Inspired by [hemonvong.space](https://hemonvong.space).
 - **Fonts:** Loaded via `next/font/google` in root layout
 - **Deployment:** Vercel (auto-deploy from GitHub `main` branch)
 
-## Folder Structure
+## Naming Conventions
+
+- **PascalCase** — React components, TypeScript interfaces
+- **camelCase** — variables, functions, props
+- **kebab-case** — file names in `data/` and `lib/`
+
+## Architecture Rules
+
+- Each section component owns its own `id` attribute for navbar scroll targeting
+- All content data lives in `src/data/` — components only render, never hardcode content
+- UI components in `src/components/ui/` are reusable and receive data via props
+- Section components in `src/components/sections/` import from `data/` and compose UI components
+- Client components (`"use client"`) only where needed (animations, interactivity)
+- Static content stays as server components by default
+
+## Styling Rules
+
+- Dark theme by default
+- Color palette defined as CSS variables in `globals.css`
+- All styling via Tailwind utility classes — no component-level CSS files
+- Responsive: desktop-first, then `md:` / `lg:` breakpoints for mobile
+
+## Git Commits
+
+Conventional style, same as Project Ethos:
+- `feat:` — new section or component
+- `style:` — visual/animation changes
+- `chore:` — config, metadata, tooling
+- `fix:` — bug fixes
+
+---
+
+## Build Phases
+
+Work through one phase at a time. Do not skip ahead. Each phase has a goal, steps, and a checkpoint. Create folders and files only when the current phase needs them — never pre-create empty structure.
+
+---
+
+### Phase 1 — Scaffold & Understand the Base
+
+**Goal:** Get a working Next.js app running locally. Understand what every generated file does.
+
+**Steps:**
+1. Run `npx create-next-app@latest . --typescript --tailwind --app --src-dir`
+2. Run `npm run dev` and open `http://localhost:3000`
+3. Walk through every generated file and explain its purpose:
+   - `src/app/layout.tsx` — what is a root layout? Why does Next.js require one?
+   - `src/app/page.tsx` — how does the App Router map files to URLs?
+   - `src/app/globals.css` — what are Tailwind directives?
+   - `next.config.ts` — what is this for?
+   - `tsconfig.json` — what does the `@/` path alias mean?
+   - `tailwind.config.ts` — how does Tailwind know which files to scan?
+4. Clean up the boilerplate from `page.tsx` — replace with a simple heading
+5. Commit: `chore: scaffold next.js project with typescript and tailwind`
+
+**Checkpoint — TJ should be able to explain:**
+- How the App Router maps folders/files to routes
+- The difference between `layout.tsx` and `page.tsx`
+- What `npm run dev` vs `npm run build` does
+
+---
+
+### Phase 2 — Deploy to Vercel
+
+**Goal:** Get the site live on the internet. Establish the deploy pipeline so every future push auto-deploys.
+
+**Steps:**
+1. Push the repo to GitHub
+2. Sign in to vercel.com with GitHub
+3. Import the repository — Vercel auto-detects Next.js
+4. Visit the live `.vercel.app` URL
+5. Explain the pipeline: `git push` → Vercel detects → builds → deploys
+
+**Checkpoint — TJ should be able to explain:**
+- What happens automatically when you push to `main`
+- Where to check build logs if something fails
+
+---
+
+### Phase 3 — Navbar + Footer (Site Shell)
+
+**Goal:** Build the persistent pieces that wrap all content. After this, the site has a top nav and bottom footer.
+
+**New files:** `src/components/layout/Navbar.tsx`, `src/components/layout/Footer.tsx`
+
+**Steps:**
+1. Create `src/components/layout/` folder — explain why layout components are separated from sections
+2. Build `Navbar.tsx` — fixed top bar with links that will scroll to sections via `href="#sectionId"`
+3. Build `Footer.tsx` — copyright text, placeholder for social links
+4. Import both into `page.tsx` — explain why these go in `page.tsx` and not `layout.tsx` (for this project)
+5. Style with Tailwind — fixed positioning, backdrop blur
+
+**Checkpoint — TJ should be able to explain:**
+- How `position: fixed` works and why the navbar uses it
+- How `href="#id"` targets a section on the same page
+- Why layout components are a separate category from section components
+
+Commit: `feat: add navbar and footer`
+
+---
+
+### Phase 4 — Hero Section
+
+**Goal:** Build the first thing visitors see. Full viewport height, your name, photo, tagline.
+
+**New files:** `src/components/sections/Hero.tsx`
+
+**Steps:**
+1. Build `Hero.tsx` — name, tagline, placeholder image, CTA button
+2. Introduce the Next.js `<Image>` component — explain why Next.js has its own and what it does (lazy loading, WebP, responsive sizes)
+3. Use `h-screen` for full viewport height — explain viewport units
+4. Add `id="hero"` — connect it to the navbar link from Phase 3
+5. Style with Tailwind — centering, typography, spacing
+
+**Checkpoint — TJ should be able to explain:**
+- Why `next/image` exists instead of just using `<img>`
+- How the section `id` connects to the navbar `href`
+- What `h-screen` means in CSS terms
+
+Commit: `feat: add hero section`
+
+---
+
+### Phase 5 — About Section + Reusable Heading
+
+**Goal:** Add a personal narrative section. Introduce the first reusable UI component.
+
+**New files:** `src/components/sections/About.tsx`, `src/components/ui/SectionHeading.tsx`
+
+**Steps:**
+1. Build `SectionHeading.tsx` — a reusable heading component that every section will use. Receives `title` as a prop
+2. Explain why: instead of writing `<h2>` with the same styles in every section, extract it once
+3. Build `About.tsx` — uses `SectionHeading`, contains 2–3 paragraphs about you
+4. Add `id="about"`, import into `page.tsx`
+5. Style — `max-w-3xl mx-auto` for readable width. Explain why line length matters
+
+**Checkpoint — TJ should be able to explain:**
+- Why extracting `SectionHeading` as a reusable component is better than repeating styled `<h2>` tags
+- How props flow from parent to child
+- What `max-w-*` and `mx-auto` do
+
+Commit: `feat: add about section with reusable section heading`
+
+---
+
+### Phase 6 — Projects Section (The Big One)
+
+**Goal:** Build the most important section. This phase introduces TypeScript interfaces, the data layer, and the full data → section → UI component pattern. Take it slow.
+
+**New files:** `src/types/index.ts`, `src/data/projects.ts`, `src/components/sections/Projects.tsx`, `src/components/ui/ProjectCard.tsx`
+
+**Steps — Part A: Define the data shape**
+1. Create `src/types/index.ts` — define the `Project` interface. Explain what an interface is and why we define the shape before writing data
+2. Create `src/data/projects.ts` — an array of `Project` objects (start with Project Ethos). Explain why data lives in its own file, not inside the component
+
+```ts
+// src/types/index.ts
+export interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  image: string;
+  github: string | null;
+  live: string | null;
+}
+```
+
+```ts
+// src/data/projects.ts
+import { Project } from "@/types";
+
+export const projects: Project[] = [
+  {
+    title: "Project Ethos",
+    description: "A personal habit tracking app with a momentum-based scoring engine.",
+    tech: ["React", "TypeScript", "Tailwind", ".NET", "PostgreSQL"],
+    image: "/images/projects/project-ethos.png",
+    github: "https://github.com/yourusername/project-ethos",
+    live: null,
+  },
+];
+```
+
+**Steps — Part B: Build the components**
+3. Build `ProjectCard.tsx` — receives a `Project` as a prop, renders the card. Explain how the component doesn't know or care where the data comes from
+4. Build `Projects.tsx` — imports the `projects` array, `.map()` over it, renders a `ProjectCard` for each
+5. Explain the full flow: data file → section component → UI component
+6. Style with CSS Grid via Tailwind (`grid`, `grid-cols-*`, `gap-*`)
+7. Add `id="projects"`, import into `page.tsx`
+
+**Checkpoint — TJ should be able to explain:**
+- What a TypeScript interface is and what happens if your data doesn't match it
+- Why data is separated from components
+- The full data flow: `data/projects.ts` → `Projects.tsx` → `ProjectCard.tsx`
+- How `.map()` turns an array into a list of components
+- How CSS Grid works in Tailwind
+
+Commit: `feat: add projects section with data layer and project cards`
+
+---
+
+### Phase 7 — Skills + Contact
+
+**Goal:** Build the remaining two sections. These follow the same pattern learned in Phase 6. Should feel faster now — that's the point.
+
+**New files:** `src/data/skills.ts`, `src/data/socials.ts`, `src/components/sections/Skills.tsx`, `src/components/sections/Contact.tsx`, `src/components/ui/SkillBadge.tsx`, `src/components/ui/SocialLink.tsx`
+
+**Steps:**
+1. Add `Skill` and `SocialLink` interfaces to `src/types/index.ts`
+2. Create `src/data/skills.ts` and `src/data/socials.ts`
+3. Build `SkillBadge.tsx` and `Skills.tsx` — group skills by category, render badge grids
+4. Build `SocialLink.tsx` and `Contact.tsx` — install Lucide React (`npm install lucide-react`), render icon + link pairs
+5. Explain Lucide React — how to import icons, how to size them
+6. Explain `target="_blank"` and `rel="noopener noreferrer"` for external links
+7. Add `id="skills"` and `id="contact"`, import both into `page.tsx`
+
+```ts
+// Added to src/types/index.ts
+export interface Skill {
+  name: string;
+  category: "Frontend" | "Backend" | "Tools" | "Other";
+}
+
+export interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+}
+```
+
+**Checkpoint — TJ should be able to explain:**
+- How to group/filter an array by a property
+- How the same data → section → UI pattern applies to all sections
+- Why `target="_blank"` needs `rel="noopener noreferrer"`
+
+Commit: `feat: add skills and contact sections`
+
+---
+
+### Phase 8 — Animations
+
+**Goal:** Add scroll-triggered fade-in animations. Learn Framer Motion and the difference between server and client components.
+
+**New files:** `src/components/ui/ScrollReveal.tsx`
+
+**Steps:**
+1. Install Framer Motion: `npm install framer-motion`
+2. Before writing code — explain server components vs client components. Why does Next.js have this distinction? When do you need `"use client"`?
+3. Build `ScrollReveal.tsx` — a `"use client"` wrapper using `motion.div` with `whileInView`
+4. Explain each Framer Motion prop: `initial`, `whileInView`, `viewport`, `transition`
+5. Wrap each section in `<ScrollReveal>` — elements fade in as you scroll
+6. Add hover effects to `ProjectCard` and `SocialLink`
+
+**Checkpoint — TJ should be able to explain:**
+- Why `ScrollReveal` needs `"use client"` but `About` doesn't
+- What `whileInView` does under the hood (Intersection Observer)
+- What `viewport: { once: true }` means
+
+Commit: `style: add scroll reveal animations and hover effects`
+
+---
+
+### Phase 9 — Mobile Responsiveness
+
+**Goal:** Make every section work on phones and tablets.
+
+**Steps:**
+1. Open browser dev tools → toggle device toolbar → test every section at different widths
+2. Identify what breaks — likely the grid, navbar, hero layout, font sizes
+3. Explain how Tailwind responsive prefixes work (`sm:`, `md:`, `lg:`) — which direction do they go?
+4. Fix the project grid — stack to single column on mobile
+5. Fix the navbar — build a hamburger menu with toggle state
+6. Fix typography and spacing at small sizes
+7. Test again across breakpoints
+
+**Checkpoint — TJ should be able to explain:**
+- What `md:grid-cols-2` means and at what pixel width it kicks in
+- How to use `useState` to toggle the mobile menu
+- How to use browser dev tools to simulate different devices
+
+Commit: `style: add mobile responsive breakpoints`
+
+---
+
+### Phase 10 — SEO & Final Polish
+
+**Goal:** Make the site look professional when shared and found on search engines.
+
+**Steps:**
+1. Add metadata in `layout.tsx` using Next.js `metadata` export — title, description, Open Graph
+2. Explain what Open Graph is — how links look when shared on LinkedIn, Discord, Twitter
+3. Add an OG image to `public/images/og-image.png`
+4. Add a favicon to `public/`
+5. Test — share the Vercel URL somewhere and see the preview card
+6. Final review: check every section, every link, every breakpoint, every animation
+7. Explain what `metadata` export does differently than a regular `<head>` tag
+
+**Checkpoint — TJ should be able to explain:**
+- What Open Graph tags are and where they appear
+- How Next.js handles metadata differently from plain React
+- What a favicon is
+
+Commit: `chore: add seo metadata and og image`
+
+---
+
+## Target Folder Structure (for reference — built incrementally across phases)
 
 ```
 portfolio/
@@ -26,359 +343,36 @@ portfolio/
 │   └── favicon.ico
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx            # Root layout (fonts, metadata, body)
-│   │   ├── page.tsx              # Home — assembles all sections
-│   │   └── globals.css           # Tailwind directives + CSS variables
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── Navbar.tsx        # Fixed top nav, smooth-scroll links
-│   │   │   └── Footer.tsx        # Social links, copyright
+│   │   │   ├── Navbar.tsx
+│   │   │   └── Footer.tsx
 │   │   ├── sections/
-│   │   │   ├── Hero.tsx          # Name, title, profile image, CTA
-│   │   │   ├── About.tsx         # Personal narrative
-│   │   │   ├── Projects.tsx      # Project cards grid
-│   │   │   ├── Skills.tsx        # Tech stack grouped grid
-│   │   │   └── Contact.tsx       # Email + social links
+│   │   │   ├── Hero.tsx
+│   │   │   ├── About.tsx
+│   │   │   ├── Projects.tsx
+│   │   │   ├── Skills.tsx
+│   │   │   └── Contact.tsx
 │   │   └── ui/
 │   │       ├── SectionHeading.tsx
 │   │       ├── ProjectCard.tsx
 │   │       ├── SkillBadge.tsx
 │   │       ├── SocialLink.tsx
-│   │       └── ScrollReveal.tsx  # Framer Motion fade-in wrapper
+│   │       └── ScrollReveal.tsx
 │   ├── data/
-│   │   ├── projects.ts           # Project objects array
-│   │   ├── skills.ts             # Skills grouped by category
-│   │   └── socials.ts            # Social media links
+│   │   ├── projects.ts
+│   │   ├── skills.ts
+│   │   └── socials.ts
 │   ├── lib/
-│   │   └── utils.ts              # Helpers (cn, etc.)
+│   │   └── utils.ts
 │   └── types/
-│       └── index.ts              # Project, Skill, SocialLink interfaces
+│       └── index.ts
 ├── .gitignore
 ├── next.config.ts
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── package.json
 ```
-
-## Naming Conventions
-
-- **PascalCase** — React components, TypeScript interfaces
-- **camelCase** — variables, functions, props
-- **kebab-case** — file names in `data/` and `lib/`
-
-## Architecture Rules
-
-- Each section component owns its own `id` attribute for navbar scroll targeting
-- All content data lives in `src/data/` — components only render, never hardcode content
-- UI components in `src/ui/` are reusable and receive data via props
-- Section components in `src/sections/` import from `data/` and compose UI components
-- Client components (`"use client"`) only where needed (animations, interactivity)
-- Static content stays as server components by default
-
-## Types
-
-```ts
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  image: string;
-  github: string | null;
-  live: string | null;
-}
-
-interface Skill {
-  name: string;
-  category: "Frontend" | "Backend" | "Tools" | "Other";
-}
-
-interface SocialLink {
-  platform: string;
-  url: string;
-  icon: string;
-}
-```
-
-## Styling
-
-- Dark theme by default
-- Color palette defined as CSS variables in `globals.css`
-- All styling via Tailwind utility classes — no component-level CSS files
-- Responsive: desktop-first, then `md:` / `lg:` breakpoints for mobile
-
-## Page Assembly
-
-`src/app/page.tsx` assembles sections in order:
-1. Navbar (fixed)
-2. Hero
-3. About
-4. Projects
-5. Skills
-6. Contact
-7. Footer
-
-## Build Phases
-
-Work through one phase at a time. Do not skip ahead. Each phase has a goal, steps, and concepts to understand before moving on. After each phase, TJ should be able to explain what was done and why.
-
----
-
-### Phase 1 — Scaffold & Understand the Base
-
-**Goal:** Get a working Next.js app running locally. Understand what every generated file does before touching anything.
-
-**Steps:**
-1. Run `npx create-next-app@latest . --typescript --tailwind --app --src-dir`
-2. Run `npm run dev` and open `http://localhost:3000` in the browser
-3. Walk through every file that was generated and explain its purpose:
-   - `src/app/layout.tsx` — what is a root layout and why does Next.js need one?
-   - `src/app/page.tsx` — how does the App Router map files to URLs?
-   - `src/app/globals.css` — where do Tailwind directives live and what do they do?
-   - `next.config.ts` — what is this for?
-   - `tsconfig.json` — what does the `@/` path alias mean?
-   - `tailwind.config.ts` — how does Tailwind know which files to scan?
-   - `package.json` — what scripts are available and what do they do?
-4. Clean up the default boilerplate from `page.tsx` (replace with a simple "Hello World")
-5. Commit: `chore: scaffold next.js project with typescript and tailwind`
-
-**Understand before moving on:**
-- How the App Router maps folders/files to routes
-- The difference between `layout.tsx` and `page.tsx`
-- How Tailwind gets loaded into the project
-- What `npm run dev` vs `npm run build` does
-
----
-
-### Phase 2 — Create the Folder Structure
-
-**Goal:** Set up the project's folders so every future file has a clear home. No actual components yet — just empty structure.
-
-**Steps:**
-1. Create the folder tree inside `src/`: `components/layout/`, `components/sections/`, `components/ui/`, `data/`, `lib/`, `types/`
-2. Create the `public/` subfolders: `images/projects/`, `files/`
-3. Create placeholder files: `src/types/index.ts`, `src/lib/utils.ts`
-4. Explain why we separate components into `layout/`, `sections/`, and `ui/`
-5. Explain why data lives in its own folder away from components
-6. Commit: `chore: create folder structure`
-
-**Understand before moving on:**
-- Why separating layout, sections, UI, data, and types matters
-- What goes where — if you had a new component, which folder does it belong in?
-
----
-
-### Phase 3 — Deploy to Vercel
-
-**Goal:** Get the (empty) site live on the internet. Establish the deploy pipeline early so every future change auto-deploys.
-
-**Steps:**
-1. Push the repo to GitHub (if not already done)
-2. Go to vercel.com, sign in with GitHub
-3. Import the repository — Vercel auto-detects Next.js
-4. Deploy and visit the live `.vercel.app` URL
-5. Explain what just happened: Git push → Vercel build → live site
-
-**Understand before moving on:**
-- How Vercel connects to your GitHub repo
-- What happens when you push to `main` (auto-deploy)
-- Where to check build logs if something breaks
-
----
-
-### Phase 4 — Navbar + Footer (Site Shell)
-
-**Goal:** Build the persistent layout pieces that wrap every section. The site should have a top nav and bottom footer before any content sections exist.
-
-**Steps:**
-1. Define the data first — what links does the navbar need? Add section names to a constant
-2. Build `Navbar.tsx` — fixed top bar with links that will scroll to sections via `href="#sectionId"`
-3. Build `Footer.tsx` — social links, copyright text
-4. Import both into `page.tsx` or `layout.tsx` and explain the difference (why layout vs page?)
-5. Style with Tailwind — backdrop blur, sticky positioning, responsive basics
-6. Commit: `feat: add navbar and footer`
-
-**Understand before moving on:**
-- How fixed/sticky positioning works in CSS
-- How `href="#id"` smooth-scrolls to a section
-- When to put something in `layout.tsx` vs `page.tsx`
-
----
-
-### Phase 5 — Hero Section
-
-**Goal:** Build the first thing visitors see — your name, title, photo, and a call-to-action. Full viewport height.
-
-**Steps:**
-1. Build `Hero.tsx` with your name, a tagline, and a placeholder for a profile image
-2. Learn and use the Next.js `<Image>` component — why does Next.js have its own image component?
-3. Add a CTA button that scrolls to the contact section
-4. Style it — center content, full viewport height (`h-screen`), Tailwind utilities
-5. Give it `id="hero"` for navbar linking
-6. Commit: `feat: add hero section`
-
-**Understand before moving on:**
-- How `next/image` optimizes images (lazy loading, responsive sizes, WebP conversion)
-- The `h-screen` utility and viewport-based sizing
-- How the section `id` connects to the navbar links from Phase 4
-
----
-
-### Phase 6 — About Section
-
-**Goal:** Add a short personal narrative section. Practice the section component pattern.
-
-**Steps:**
-1. Build `About.tsx` — a simple section with a heading and 2–3 paragraphs
-2. Create `SectionHeading.tsx` as a reusable UI component (used by every section going forward)
-3. Write the actual content — who you are, what you're building, what drives you
-4. Style with Tailwind — max-width container, readable line lengths, spacing
-5. Give it `id="about"`
-6. Commit: `feat: add about section with section heading component`
-
-**Understand before moving on:**
-- The pattern: section component uses a reusable UI component (SectionHeading)
-- How `max-w-*` and `mx-auto` center content in Tailwind
-- Why readable line length matters (prose styling)
-
----
-
-### Phase 7 — Types + Data Layer
-
-**Goal:** Define the TypeScript interfaces and populate the data files before building the components that use them. Understand the data-first approach.
-
-**Steps:**
-1. Define `Project`, `Skill`, and `SocialLink` interfaces in `src/types/index.ts`
-2. Create `src/data/projects.ts` — array of project objects (start with Project Ethos)
-3. Create `src/data/skills.ts` — array of skills grouped by category
-4. Create `src/data/socials.ts` — your GitHub, LinkedIn, email links
-5. Explain why: components should never hardcode content — they receive it as props from data files
-
-**Understand before moving on:**
-- Why separating data from components makes the site easy to update
-- How TypeScript interfaces enforce the shape of your data
-- The pattern: `data/` file exports an array → section component imports it → passes items to UI components as props
-
----
-
-### Phase 8 — Projects Section
-
-**Goal:** Build the most important section of the portfolio. Introduces the data → section → UI component pattern in full.
-
-**Steps:**
-1. Build `ProjectCard.tsx` — receives a `Project` prop, renders image, title, description, tech badges, links
-2. Build `Projects.tsx` — imports from `data/projects.ts`, maps over the array, renders a `ProjectCard` for each
-3. Create `SkillBadge.tsx` for the tech tags on each card (reused in Skills section later)
-4. Style the grid layout — CSS Grid or Flexbox via Tailwind
-5. Give it `id="projects"`
-6. Commit: `feat: add projects section with project card component`
-
-**Understand before moving on:**
-- The full data flow: `data/projects.ts` → `Projects.tsx` → `ProjectCard.tsx`
-- How `.map()` renders a list of components from an array
-- How CSS Grid works in Tailwind (`grid`, `grid-cols-*`, `gap-*`)
-
----
-
-### Phase 9 — Skills Section
-
-**Goal:** Display your tech stack visually. Reuses the SkillBadge component from Phase 8.
-
-**Steps:**
-1. Build `Skills.tsx` — imports from `data/skills.ts`, groups by category, renders badges
-2. Reuse `SkillBadge.tsx` from Phase 8
-3. Style as a grouped grid — category headings with badges underneath
-4. Give it `id="skills"`
-5. Commit: `feat: add skills section`
-
-**Understand before moving on:**
-- How to group/filter an array by a property (category)
-- Reusing a UI component across different sections
-
----
-
-### Phase 10 — Contact Section
-
-**Goal:** Give visitors a way to reach you. Keep it simple — links only, no form backend needed.
-
-**Steps:**
-1. Build `Contact.tsx` — heading, a short message, and social/email links
-2. Build `SocialLink.tsx` — icon + link, receives a `SocialLink` prop
-3. Import data from `data/socials.ts`
-4. Style with Tailwind — centered, icon row
-5. Give it `id="contact"`
-6. Commit: `feat: add contact section with social links`
-
-**Understand before moving on:**
-- How Lucide React icons work (importing and sizing)
-- How `target="_blank"` and `rel="noopener noreferrer"` work for external links
-
----
-
-### Phase 11 — Animations
-
-**Goal:** Add polish with scroll-triggered fade-in animations. Learn Framer Motion basics.
-
-**Steps:**
-1. Install Framer Motion: `npm install framer-motion`
-2. Build `ScrollReveal.tsx` — a wrapper that fades in children when they enter the viewport
-3. Explain how Framer Motion's `motion.div`, `whileInView`, and `viewport` props work
-4. Explain `"use client"` — why is it needed here and not in other components?
-5. Wrap each section in `<ScrollReveal>`
-6. Add subtle hover effects to ProjectCard and SocialLink
-7. Commit: `style: add scroll reveal animations`
-
-**Understand before moving on:**
-- Server components vs client components — when and why you add `"use client"`
-- How Framer Motion's `whileInView` detects scroll position
-- What `viewport: { once: true }` does and why you want it
-
----
-
-### Phase 12 — Mobile Responsiveness
-
-**Goal:** Make the site work on phones and tablets. Desktop-first means we're adding mobile overrides.
-
-**Steps:**
-1. Open browser dev tools, toggle responsive mode, test every section
-2. Identify what breaks at smaller widths
-3. Fix with Tailwind responsive prefixes (`sm:`, `md:`, `lg:`)
-4. Handle the navbar — add a hamburger menu for mobile
-5. Test project card grid stacking on small screens
-6. Commit: `style: add mobile responsive breakpoints`
-
-**Understand before moving on:**
-- How Tailwind's responsive prefixes work (mobile-first vs desktop-first)
-- How to use browser dev tools to simulate different screen sizes
-- The hamburger menu pattern (toggle state, conditional rendering)
-
----
-
-### Phase 13 — SEO & Final Polish
-
-**Goal:** Make the site look professional when shared on social media and search engines.
-
-**Steps:**
-1. Add metadata in `layout.tsx` — title, description, Open Graph tags
-2. Explain what metadata does and why (how links look when shared on LinkedIn, Discord, etc.)
-3. Create or add an OG image (`public/images/og-image.png`)
-4. Add a favicon
-5. Test with a URL preview tool
-6. Final review — check every section, every link, every breakpoint
-7. Commit: `chore: add seo metadata and og image`
-
-**Understand before moving on:**
-- What Open Graph tags are and where they show up
-- How search engines read your metadata
-- What a favicon is and how browsers use it
-
-## Git Commits
-
-Conventional style, same as Project Ethos:
-- `feat:` — new section or component
-- `style:` — visual/animation changes
-- `chore:` — config, metadata, tooling
-- `fix:` — bug fixes
-
-## Collaboration Style
-
-Pair-programming — discuss approach first, then TJ types the code. Claude explains the why, not just the what. The goal is not just to ship a portfolio — it's to learn how full systems work end-to-end. Prioritize understanding over speed. When introducing new concepts (App Router, Framer Motion, Vercel deployment, etc.), explain how and why they work, not just what to type.
