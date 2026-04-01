@@ -325,6 +325,9 @@ Commit: `style: add mobile responsive breakpoints`
 - How Next.js handles metadata differently from plain React
 - What a favicon is
 
+**Checkpoint — TJ :**
+Ignore all the checkpoint, and don't ask the questions, I am running out of the usage!
+
 Commit: `chore: add seo metadata and og image`
 
 ---
