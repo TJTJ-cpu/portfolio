@@ -5,17 +5,27 @@ import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function Home() {
   return (
     <main>
       <Navbar/>
       <Hero/>
-      <About/>
-      <Projects/>
-      <Skills/>
-      <Contact/>
+      <ScrollReveal>
+        <About/>
+      </ScrollReveal>
+      <ScrollReveal>
+        <Projects/>
+      </ScrollReveal>
+      <ScrollReveal>
+        <Skills/>
+      </ScrollReveal>
+      <ScrollReveal>
+        <Contact/>
+      </ScrollReveal>
       <Footer/>
     </main>
   );
 }
+
