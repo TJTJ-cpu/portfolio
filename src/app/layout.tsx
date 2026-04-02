@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     description: "Personal portfolio of TJ Mady — aspiring software developer.",
     url: "https://portfolio-zeta-nine-63.vercel.app",
     type: "website",
+    images: [
+      {
+        url: "/images/monkey.png",
+        width: 1200,
+        height: 630,
+        alt: "TJ Mady Portfolio"
+      },
+    ],
   },
 };
 
