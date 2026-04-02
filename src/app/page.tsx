@@ -18,9 +18,9 @@ export default function Home() {
       <ScrollReveal>
         <Projects/>
       </ScrollReveal>
-      <ScrollReveal>
+      {/* <ScrollReveal>
         <Skills/>
-      </ScrollReveal>
+      </ScrollReveal> */}
       <ScrollReveal>
         <Contact/>
       </ScrollReveal>

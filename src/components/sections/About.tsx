@@ -10,11 +10,12 @@ export default function About() {
 
       <SectionHeading title="About Me" />
 
-      <p className="text-gray-400 leading-relaxed mb-10">
-
+      <h3 className="text-2xl text-center mb-10">
+        Certifcate 
+      </h3>
+      {/* <p className="text-gray-400 leading-relaxed mb-10">
          Coding : Basketball : Gym : Jesus
-
-      </p>
+      </p> */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       <ImageCard 
       title="Basketball"
