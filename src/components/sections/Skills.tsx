@@ -1,4 +1,5 @@
 import SectionHeading from "@/components/ui/SectionHeading";
+import { SECTION_CLASSES } from "@/lib/constants";
 import SkillBadge from "@/components/ui/SkillBadge";
 import { skills } from "@/data/skills";
 
@@ -6,7 +7,7 @@ export default function Skills() {
   const categories = ["Frontend", "Backend", "Tools", "Other"] as const;
 
   return (
-    <section id="skills" className="py-20 max-w-3xl mx-auto px-6">
+    <section id="skills" className={SECTION_CLASSES}>
       <SectionHeading title="Skills" />
       {categories.map((category) => {
         const filtered = skills.filter((skill) => skill.category === category);
