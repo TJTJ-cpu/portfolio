@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TJ Mady | Software Developer",
+  title: "Tungjai Mady (TJ) | Software Developer",
   description: "Personal portfolio of TJ Mady — aspiring software developer.",
   openGraph: {
-    title: "TJ Mady | Software Developer",
+    title: "Tungjai Mady (TJ) | Software Developer",
     description: "Personal portfolio of TJ Mady — aspiring software developer.",
     url: "https://portfolio-zeta-nine-63.vercel.app",
     type: "website",
