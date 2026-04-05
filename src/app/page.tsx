@@ -6,6 +6,7 @@ import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
 import Contact from "@/components/sections/Contact";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import Education from "@/components/sections/Education";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
       <Hero/>
       <ScrollReveal>
         <About/>
+      </ScrollReveal>
+      <ScrollReveal>
+        <Education/>
       </ScrollReveal>
       <ScrollReveal>
         <Projects/>

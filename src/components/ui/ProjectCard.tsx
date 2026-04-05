@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.github && (
           <a href={project.github} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
-            GitHub
+            View on GitHub
           </a>
         )}
         {project.live && (

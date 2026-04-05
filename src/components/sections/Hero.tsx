@@ -8,7 +8,7 @@ export default function Hero() {
         alt="Tungjai Mady (TJ)"
         width={200}
         height={200}
-        className="rounded-full mb-8"
+        className="rounded-full mb-8 h-auto"
       />
       <h1 className="text-5xl font-bold text-white">Tungjai Mady (TJ)</h1>
       <p className="text-xl text-gray-400 mt-4">Software Developer

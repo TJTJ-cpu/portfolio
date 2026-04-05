@@ -18,3 +18,22 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export interface Education {
+  school: string;
+  degree: string;
+  period: string;
+  location: string;
+  highlights: string[];
+  logo:string;
+  url: string;
+}
+
+
+
+
+
+
+
+
+

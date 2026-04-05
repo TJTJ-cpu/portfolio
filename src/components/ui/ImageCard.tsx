@@ -17,7 +17,7 @@ export default function ImageCard({ title, src, alt, children }: ImageCardProps)
         <h3 className="text-lg font-semibold text-white text-center">{title}</h3>
         <div className="rounded-xl overflow-hidden border-2 border-white/10 p-1.5 bg-white/5 cursor-pointer transition-all duration-300 hover:scale-110 hover:border-white/25" onClick={() => setIsOpen(true)}>
           <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-            <Image src={src} alt={alt} fill className="object-cover" />
+            <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
           </div>
         </div>
       </div>
