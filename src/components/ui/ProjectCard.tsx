@@ -30,13 +30,19 @@ export default function ProjectCard({ project }: { project: Project }) {
         {project.github && (
           <a href={project.github} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
-            View on GitHub
+            <ExternalLink size={16} /> GitHub
           </a>
         )}
         {project.live && (
           <a href={project.live} target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
             <ExternalLink size={16} /> Live Demo
+          </a>
+        )}
+        {project.report && (
+          <a href={project.report} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors">
+            <ExternalLink size={16} /> View Report
           </a>
         )}
       </div>

@@ -8,7 +8,8 @@ export default function About() {
     <section id="about" className={SECTION_CLASSES}>
       <SectionHeading title="About Me" />
       <p className="mb-10">
-        The National Aeronautics and Space Administration (NASA /ˈnæsə/) is an independent agency of the U.S. federal government responsible for the United States' civil space program and for research in aeronautics and space. Headquartered in Washington, D.C., NASA operates ten field centers across the U.S. and is organized into mission directorates for Science, Space Operations, Exploration Systems Development, Space Technology, Aeronautics Research, and Mission Support
+        I graduated from Luleå University of Technology with a degree in Computer Engineering, specialising in Computer Game Programming.
+        I enjoy working on complex stuff such as building a game physics engine and workshop production tools in C++ and Unreal Engine. As well as building a more simplier project, such as a full stack web app using.NET or data analysis in Python.
       </p>
 
       <h3 className="text-2xl text-center mb-10 font-bold">
