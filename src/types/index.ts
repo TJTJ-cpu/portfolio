@@ -29,6 +29,14 @@ export interface Education {
   url: string;
 }
 
+export interface Certificate {
+  name: string;
+  issuer: string;
+  date: string;
+  description: string;
+  image: string;
+  pdf: string | null;
+}
 
 
 
