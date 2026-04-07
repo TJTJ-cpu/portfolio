@@ -13,16 +13,16 @@ export default function Hero() {
       <Image
         src="/images/profile/me.jpg"
         alt="Tungjai Mady (TJ)"
-        width={275}
-        height={275}
-        className="rounded-full mb-8 h-auto"
+        width={200}
+        height={200}
+        className="rounded-full mb-8 h-auto md:w-64"
       />
       </motion.div>
       <motion.h1 
       initial={{opacity: 0, y:20}}
       animate={{opacity: 1, y:0}}
       transition={{duration: 0.5}}
-      className="text-5xl font-bold text-white">Tungjai Mady (TJ)</motion.h1>
+      className="text-4xl font-bold text-white">Tungjai Mady (TJ)</motion.h1>
       <motion.p 
       initial={{opacity: 0, y:20}}
       animate={{opacity: 1, y:0}}
@@ -36,28 +36,28 @@ export default function Hero() {
       transition={{ duration: 0.5, delay:0.6}}
 
       className="flex gap-4 mt-8">
-        <a
-          href="#projects"
-          className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
-        >
-          View Projects
-        </a>
+
         <a
           href="#contact"
-          className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+          className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
         >
           Get in Touch
+        </a>
+        <a
+          href="#projects"
+          className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+        >
+          View Projects
         </a>
         <a
           href="/documents/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
+          className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors"
         >
           Resume
         </a>
 
-        <a/>
       </motion.div>
     </section>
   );

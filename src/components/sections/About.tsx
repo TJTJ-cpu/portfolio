@@ -22,7 +22,7 @@ export default function About() {
       <h3 className="text-2xl text-center mb-10 font-bold">
         Certificates
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {certificates.map((cert, index) => (
           <motion.div
             key={cert.name}

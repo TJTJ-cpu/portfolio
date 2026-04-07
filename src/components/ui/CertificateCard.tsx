@@ -22,10 +22,12 @@ export default function CertificateCard({ cert }: { cert: Certificate }) {
           />
         </div>
         <div className="p-4">
-          <h3 className="text-lg font-semibold text-white">{cert.name}</h3>
-          <p className="text-sm text-gray-400">
+          {/* <h3 className="text-lg font-semibold text-white">{cert.name}</h3> */}
+          <h3 className="text-lg font-semibold text-white min-h-[4.5rem] flex items-center">{cert.name}</h3>
+
+          {/* <p className="text-sm text-gray-400">
             {cert.issuer} · {cert.date}
-          </p>
+          </p> */}
         </div>
       </div>
 
