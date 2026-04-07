@@ -5,8 +5,8 @@ export default function Navbar() {
         <a href="#hero" className="text-white font-bold text-lg">Tungjai Mady (TJ)</a>
         <div className="flex gap-6">
           <a href="#about" className="text-gray-300 hover:text-white">About</a>
+          <a href="#education" className="text-gray-300 hover:text-white">Education</a>
           <a href="#projects" className="text-gray-300 hover:text-white">Projects</a>
-          <a href="#skills" className="text-gray-300 hover:text-white">Skills</a>
           <a href="#contact" className="text-gray-300 hover:text-white">Contact</a>
         </div>
       </div>
