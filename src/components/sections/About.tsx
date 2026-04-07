@@ -7,9 +7,14 @@ export default function About() {
   return (
     <section id="about" className={SECTION_CLASSES}>
       <SectionHeading title="About Me" />
-      <p className="mb-10">
+      <p className="mb-3">
         I graduated from Luleå University of Technology with a degree in Computer Engineering, specialising in Computer Game Programming.
-        I enjoy working on complex stuff such as building a game physics engine and workshop production tools in C++ and Unreal Engine. As well as building a more simplier project, such as a full stack web app using.NET or data analysis in Python.
+      </p>
+      <p className="mb-3">
+        Despite studying game dev in my university, I really enjoy making a website and hopefully trying to become a full stack developer one day. 
+      </p>
+      <p className="mb-10">
+        Building physics engines and working with C++ and C# taught me how to think about performance, memory, and data structures. These are essential skills that can be easily translated to other projects. 
       </p>
 
       <h3 className="text-2xl text-center mb-10 font-bold">

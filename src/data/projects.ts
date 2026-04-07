@@ -3,8 +3,8 @@ import { Project } from "@/types";
 export const projects: Project[] = [
   {
     title: "Vim for the Win",
-    description: "Just my own personal Neovim and Vim config",
-    contributions:["I cook it mysel"],
+    description: "My personal vim config. Got inspired to use nvim by PrimeAgen!",
+    contributions:["Read through nvim kickstarter", "Customized it to myself"],
     tech: ["Lua", "JSON", "Neovim", "VS Code"],
     image: "/images/projects/vimLogo.jpg", 
     github: "https://github.com/TJTJ-cpu/VimForTheWin",
@@ -131,25 +131,25 @@ export const projects: Project[] = [
   report:"/documents/optimization.pdf"
 },
 {
-  title: "OpenGL",
-  description: "A CPU raytracer profiled and optimized for performance, featuring BVH acceleration, multi-threaded rendering, and PBR materials, built as a university optimization assignment.",
+  title: "OpenGL Rendering Engine",
+  description: "A C++ OpenGL rendering engine built across multiple university assignments, progressing from basic mesh rendering to a full deferred shading pipeline with GLTF loading, normal mapping, and Blinn-Phong lighting.",
   contributions: [
-    "Built a CLI benchmark mode with configurable resolution, rays per pixel, bounce depth, and sphere count",
-    "Implemented BVH (Bounding Volume Hierarchy) with Surface Area Heuristic for accelerated ray-scene intersection",
-    "Developed a multi-threaded rendering pipeline using a thread pool with chunk-based work distribution",
-    "Profiled critical code paths using Visual Studio, AMD µProf/Intel VTune, and Nvidia Nsight Systems",
-    "Optimized memory access patterns, reduced heap allocations, and improved arithmetic in intersection tests",
-    "Supported Lambertian, Conductor, and Dielectric PBR materials with configurable roughness"
+    "Built core MeshResource class with VAO/VBO/IBO, supporting quad, cube, and sphere generation",
+    "Implemented OBJ file parser for loading 3D models with positions, UVs, and normals from scratch",
+    "Created TextureResource class with stb_image loading, mipmapping, and multi-channel support",
+    "Developed ShaderResource class with compilation, linking, error reporting, and uniform management",
+    "Designed GraphicsNode system combining mesh, texture, shader, and transform into renderable objects",
+    "Implemented Blinn-Phong shading with point lights, directional lights (sun), and specular highlights",
+    "Built GLTF scene loader using fx-gltf, extracting meshes, materials, and embedded textures",
+    "Added tangent-space normal mapping with TBN matrix construction for surface detail",
+    "Implemented a deferred shading pipeline with G-buffer (position, normal, albedo+specular) and a lighting pass supporting 32 point lights",
+    "Created a free-fly camera system with mouse-look, WASD movement, and orbit controls",
+    "Built a custom math library with vec2/vec3/vec4, mat4, and transformation utilities"
   ],
-  tech: ["C++", "OpenGL", "GLFW", "CMake", "stb_image"],
+  tech: ["C++", "OpenGL", "GLSL", "GLFW", "GLEW", "stb_image", "fx-gltf", "ImGui", "CMake"],
   image: "/images/projects/duck.png",
-  github: "https://github.com/flindahl/trayracer",
+  github: "https://github.com/LuleaUniversityOfTechnology/s0009e-lab-env-TJTJ-cpu",
   live: null,
-  report:"/documents/optimization.pdf"
+  report: null,
 }
-
-
-
-
-
 ];

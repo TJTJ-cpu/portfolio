@@ -2,7 +2,7 @@ import { Education } from "@/types";
 
 export const education: Education[] = [
   {
-    school: "Vientiane Pattana School Internation",
+    school: "Vientiane Pattana School International",
     degree: "High School Diploma",
     period: "2007 - 2020",
     location: "Vientiane, Laos",

@@ -10,7 +10,7 @@ export const certificates: Certificate[] = [
     pdf: "/documents/degree.pdf",
   },
   {
-    name: "Pinpointing Virtual Object Locations in Real World",
+    name: "Bachelor's Thesis in Computer Engineering",
     issuer: "Luleå University of Technology",
     date: "2025",
     description: "Bachelor's thesis on mapping virtual locations in Unreal Engine to real-world positions using Qualisys motion capture and Live Link integration.",
