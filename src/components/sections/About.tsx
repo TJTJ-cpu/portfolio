@@ -1,7 +1,9 @@
+"use client"
 import SectionHeading from "@/components/ui/SectionHeading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import CertificateCard from "../ui/CertificateCard";
 import { certificates } from "@/data/certificates";
+import { motion } from "framer-motion";
 
 export default function About() {
   return (
@@ -21,8 +23,17 @@ export default function About() {
         Certificates
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {certificates.map((cert) => (
+        {certificates.map((cert, index) => (
+          <motion.div
+            key={cert.name}
+            initial={{opacity: 0, y: 20}}
+            whileInView={{opacity: 1, y:0}}
+            viewport={{once: true}}
+            transition={{ duration: 0.5, delay: index * 0.1}}
+          >
+
           <CertificateCard key={cert.name} cert={cert} />
+          </motion.div>
         ))}
       </div>
     </section>

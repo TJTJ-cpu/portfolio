@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tungjai Mady (TJ) | Software Developer",
-  description: "Personal portfolio of TJ Mady — aspiring software developer.",
+  description: "Personal portfolio of TJ Mady — Aspiring Software Developer.",
   openGraph: {
     title: "Tungjai Mady (TJ) | Software Developer",
     description: "Personal portfolio of TJ Mady — aspiring software developer.",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/monkey.png",
+        url: "/images/preview.png",
         width: 1200,
         height: 630,
         alt: "TJ Mady Portfolio"

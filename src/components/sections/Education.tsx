@@ -1,16 +1,23 @@
+"use client"
 import Image from "next/image";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import { education } from "@/data/education";
+import { motion } from "framer-motion";
 
 export default function Education() {
   return (
     <section id="education" className={SECTION_CLASSES}>
       <SectionHeading title="Education" />
-      <div className="flex flex-col gap-8">
-        {education.map((edu) => (
-          <div
+      <div 
+      className="flex flex-col gap-8">
+        {education.map((edu, index) => (
+          <motion.div
             key={edu.school}
+            initial={{opacity: 0, y: 20}}
+            whileInView={{opacity: 1, y:0}}
+            viewport={{once: true}}
+            transition={{ duration: 0.5, delay: index * 0.3}}
             className="flex gap-6 rounded-xl border border-white/10 bg-white/5 p-6"
           >
             <div className="relative h-32 w-32 flex-shrink-0">
@@ -41,7 +48,7 @@ export default function Education() {
                 </ul>
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
