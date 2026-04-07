@@ -18,7 +18,7 @@ export const education: Education[] = [
     period: "2022 - 2025",
     location: "Skellefteå, Sweden",
     highlights: ["Computer Engineering - Computer Game Programming", "Final Thesis - Pinpointing Virtual Object Locations in Real World"],
-    logo: "/images/education/ltu1.jpg",
+    logo: "/images/education/ltu.jpg",
     url: "https://www.ltu.se/"
   },
 ];
