@@ -5,6 +5,5 @@ export const socials: SocialLink[] = [
   { platform: "LinkedIn", url: "https://www.linkedin.com/in/tungjai-mady/ ", icon: "Link" },
   // { platform: "Youtube", url: "https://www.youtube.com/", icon: "SquarePlay" },
   { platform: "Youtube", url: "https://www.youtube.com/@cozydev1234", icon: "SquarePlay" },
-  { platform: "My Website", url: "https://www.tungjaimady.com", icon: "Globe" },
   { platform: "tjeurope2002@gmail.com", url: "mailto:tjeurope2002@gmail.com", icon: "Mail" },
 ];

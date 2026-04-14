@@ -1,9 +1,8 @@
-import { FolderGit2, Globe, Link, Mail, SquarePlay } from "lucide-react";
+import { FolderGit2, Link, Mail, SquarePlay } from "lucide-react";
 import { SocialLink as SocialLinkType } from "@/types";
 
 const icons: Record<string, React.ElementType> = {
   FolderGit2,
-  Globe,
   Link,
   Mail,
   SquarePlay
