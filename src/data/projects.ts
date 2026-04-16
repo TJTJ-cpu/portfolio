@@ -1,7 +1,26 @@
 import { Project } from "@/types";
 
 export const projects: Project[] = [
-{
+  {
+    title: "Digital Butler",
+    description: "A full-stack Kanban project management app with JWT authentication, workspace membership, and a drag-and-drop board with basic UI and rollback on failure.",
+    contributions: [
+      "Designed and built the relational database schema with EF Core (Users, Workspaces, Members, Projects, Tasks) using Fluent API and migrations",
+      "Implemented JWT authentication with BCrypt password hashing and claims-based identity",
+      "Built workspace and membership CRUD with role-based authorization (Admin, Member, Viewer)",
+      "Developed task positional reordering logic with transactional updates for drag-and-drop persistence",
+      "Created a React auth context with in-memory JWT storage and a fetch wrapper for protected API calls",
+      "Built a Kanban board with @hello-pangea/dnd featuring optimistic state updates and rollback on API failure",
+      "Implemented confirmation modals for destructive actions (workspace/project deletion) to prevent accidental data loss",
+      "Polished the UI with consistent styling, hover transitions, and responsive layouts using Tailwind CSS"
+    ],
+    tech: ["Next.js", "React", "Tailwind CSS", "C#", "ASP.NET Core", "Entity Framework Core", "PostgreSQL", "JWT"],
+    image: "/images/projects/digitalbutler.png",
+    github: "https://github.com/TJTJ-cpu/DigitalButler",
+    live: null,
+    report: null,
+  },
+  {
   title: "Desmodus",
   description: "A multiplayer first-person horror vampire game built in Unreal Engine over 2 months with a team of 6 programmers and 13 artists, featuring LAN-based multiplayer gameplay.",
   contributions: [
