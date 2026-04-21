@@ -10,14 +10,13 @@ export const projects: Project[] = [
       "Built workspace and membership CRUD with role-based authorization (Admin, Member, Viewer)",
       "Developed task positional reordering logic with transactional updates for drag-and-drop persistence",
       "Created a React auth context with in-memory JWT storage and a fetch wrapper for protected API calls",
-      "Built a Kanban board with @hello-pangea/dnd featuring optimistic state updates and rollback on API failure",
       "Implemented confirmation modals for destructive actions (workspace/project deletion) to prevent accidental data loss",
       "Polished the UI with consistent styling, hover transitions, and responsive layouts using Tailwind CSS"
     ],
     tech: ["Next.js", "React", "Tailwind CSS", "C#", "ASP.NET Core", "Entity Framework Core", "PostgreSQL", "JWT"],
     image: "/images/projects/digitalbutler.png",
     github: "https://github.com/TJTJ-cpu/DigitalButler",
-    live: null,
+    live: "https://digitalbutler.vercel.app",
     report: null,
   },
   {
